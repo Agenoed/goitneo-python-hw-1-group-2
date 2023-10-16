@@ -24,12 +24,26 @@ def get_birthdays_per_week(users):
             weekday = birthday_date.strftime("%A")
             birthday_dict[weekday].append(name)
 
-    for day, names in birthday_dict.items():
+    sorted_days = list(birthday_dict.keys())
+    sorted_days.sort(
+        key=lambda x: (
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ).index(x)
+    )
+
+    for day in sorted_days:
+        names = birthday_dict[day]
         print(f"{day}: {', '.join(names)}")
 
 
 users = [
-    {"name": "Bill Gates", "birthday": datetime(1955, 10, 28)},
+    {"name": "Bill Gates", "birthday": datetime(1955, 10, 17)},
     {"name": "Jan Kouк", "birthday": datetime(1971, 10, 22)},
     {"name": "Kim Kardashian", "birthday": datetime(1982, 10, 21)},
     {"name": "Jim Hox", "birthday": datetime(1976, 11, 30)},
